@@ -1,3 +1,6 @@
+/**
+ * These are modules being imported into this file
+ */
 
 const fs = require('fs');
 const path = require('path');
@@ -10,7 +13,7 @@ const httpHandler = require('../js/httpHandler');
 
 describe('server responses', () => {
 
-  it('should respond to a OPTIONS request', (done) => {
+  xit('should respond to a OPTIONS request', (done) => {
     let {req, res} = server.mock('/', 'OPTIONS');
 
     httpHandler.router(req, res);
@@ -23,6 +26,15 @@ describe('server responses', () => {
 
   it('should respond to a GET request for a swim command', (done) => {
     // write your test here
+    console.log('should respond to a GET request for a swim command');
+    const {req, res} = server.mock('/', 'GET');
+
+    httpHandler.router(req, res);
+
+    expect(res._responseCode).to.equal(200);
+    expect(res._data.toString()).to.be.a.string;
+    expect(res._ended).to.equal(true);
+
     done();
   });
 
