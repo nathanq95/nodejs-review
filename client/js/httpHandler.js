@@ -1,6 +1,24 @@
+
+
 (function() {
 
   const serverUrl = 'http://127.0.0.1:3000';
+
+
+  const getSwimCommand = () => {
+    console.log('axios get request called');
+    axios({method: 'get', url: serverUrl})
+      .then((res) => {
+        console.log('this is a response from the client', res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  setInterval(() => {
+    getSwimCommand();
+  }, 5000);
 
   //
   // TODO: build the swim command fetcher here
